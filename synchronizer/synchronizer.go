@@ -403,7 +403,7 @@ func (s *ClientSynchronizer) syncBlocks(lastBlockSynced etherman.Block) (*etherm
 			}
 			lastBlockSynced = etherman.Block{
 				BlockNumber: fb.Number.Uint64(),
-				BlockHash:   fb.Hash(),
+				BlockHash:   fb.RpcHash,
 			}
 			log.Debugf("NetworkID: %d, Keeping empty block in memory as lastBlockSynced. BlockNumber: %d. BlockHash: %s", s.networkID, lastBlockSynced.BlockNumber, lastBlockSynced.BlockHash.String())
 		}
@@ -653,7 +653,7 @@ func (s *ClientSynchronizer) checkReorg(latestStoredBlock etherman.Block, synced
 			}
 			block = &etherman.Block{
 				BlockNumber: b.Number.Uint64(),
-				BlockHash:   b.Hash(),
+				BlockHash:   b.RpcHash,
 			}
 			if block.BlockNumber != reorgedBlock.BlockNumber {
 				err := fmt.Errorf("networkID: %d, wrong ethereum block retrieved from blockchain. Block numbers don't match. BlockNumber stored: %d. BlockNumber retrieved: %d",
