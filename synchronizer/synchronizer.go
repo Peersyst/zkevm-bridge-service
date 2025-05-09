@@ -541,7 +541,7 @@ func (s *ClientSynchronizer) checkReorg(latestStoredBlock, syncedBlock *etherman
 			}
 			block = &etherman.Block{
 				BlockNumber: b.Number().Uint64(),
-				BlockHash:   b.Hash(),
+				BlockHash:   b.RPCHash,
 				ParentHash:  b.ParentHash(),
 			}
 			if block.BlockNumber != reorgedBlock.BlockNumber {
