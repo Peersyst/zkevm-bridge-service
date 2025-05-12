@@ -31,4 +31,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            peersyst/zkevm-bridge-service:${{ github.ref_name }}
+            ghcr.io/peersyst/zkevm-bridge-service:${{ github.ref_name }}
