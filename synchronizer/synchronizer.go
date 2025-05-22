@@ -402,7 +402,7 @@ func (s *ClientSynchronizer) syncBlocks(lastBlockSynced etherman.Block) (*etherm
 			}
 			lastBlockSynced = etherman.Block{
 				BlockNumber: fb.Number.Uint64(),
-				BlockHash:   fb.Hash(),
+				BlockHash:   fb.RpcHash,
 			}
 			log.Debugf("NetworkID: %d, Keeping empty block in memory as lastBlockSynced. BlockNumber: %d. BlockHash: %s", s.networkID, lastBlockSynced.BlockNumber, lastBlockSynced.BlockHash.String())
 		}
