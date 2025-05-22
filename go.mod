@@ -161,4 +161,4 @@ require (
 	rsc.io/tmplfunc v0.0.3 // indirect
 )
 
-replace github.com/ethereum/go-ethereum => github.com/Peersyst/go-ethereum v1.15.8-agglayer.1
+replace github.com/ethereum/go-ethereum => github.com/Peersyst/go-ethereum v1.15.8-agglayer.2
