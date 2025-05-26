@@ -317,6 +317,9 @@ func (s *ClientSynchronizer) syncBlocks(lastBlockSynced etherman.Block) (*etherm
 		// Name can be different in the order struct. This name is an identifier to check if the next info that must be stored in the db.
 		// The value pos (position) tells what is the array index where this value is.
 		start := time.Now()
+		if s.networkID == 36 {
+			log.Infof("[TAC DBG] getting elements from block %d to block %d", fromBlock, &toBlock)
+		}
 		blocks, order, err := s.etherMan.GetRollupInfoByBlockRange(s.ctx, fromBlock, &toBlock)
 		metrics.ReadL1DataTime(time.Since(start))
 		if err != nil {
@@ -458,8 +461,9 @@ func (s *ClientSynchronizer) processBlockRange(blocks []etherman.Block, order ma
 			log.Errorf("networkID: %d, error storing block. BlockNumber: %d, error: %v", s.networkID, blocks[i].BlockNumber, err)
 			return s.rollback(blocks[i].BlockNumber, err, dbTx)
 		}
-		log.Infof("[TAC DBG] %+v", order[blocks[i].BlockHash])
+		log.Infof("[TAC DBG] blocks order with events to store %+v", order[blocks[i].BlockHash])
 		for _, element := range order[blocks[i].BlockHash] {
+			log.Infof("[TAC DBG] store item %+v", element)
 			switch element.Name {
 			case etherman.GlobalExitRootsOrder:
 				if len(blocks[i].GlobalExitRoots) < element.Pos+1 {
