@@ -113,6 +113,7 @@ func (p *PostgresStorage) AddGlobalExitRoot(ctx context.Context, exitRoot *ether
 	if len(exitRoot.ExitRoots) != 0 {
 		exitRoots = [][]byte{exitRoot.ExitRoots[0][:], exitRoot.ExitRoots[1][:]}
 	}
+	log.Errorf("inserting global exit root %+v, %+v, %+v, %+v", exitRoot.BlockID, exitRoot.GlobalExitRoot, pq.Array(exitRoots), exitRoot.NetworkID)
 	e := p.getExecQuerier(dbTx)
 	_, err := e.Exec(ctx, addExitRootSQL, exitRoot.BlockID, exitRoot.GlobalExitRoot, pq.Array(exitRoots), exitRoot.NetworkID)
 	return err
