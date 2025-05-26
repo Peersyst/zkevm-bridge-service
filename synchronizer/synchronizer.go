@@ -318,7 +318,7 @@ func (s *ClientSynchronizer) syncBlocks(lastBlockSynced etherman.Block) (*etherm
 		// The value pos (position) tells what is the array index where this value is.
 		start := time.Now()
 		if s.networkID == 36 {
-			log.Infof("[TAC DBG] getting elements from block %d to block %d", fromBlock, &toBlock)
+			log.Infof("[TAC DBG] getting elements from block %d to block %d", fromBlock, toBlock)
 		}
 		blocks, order, err := s.etherMan.GetRollupInfoByBlockRange(s.ctx, fromBlock, &toBlock)
 		metrics.ReadL1DataTime(time.Since(start))
