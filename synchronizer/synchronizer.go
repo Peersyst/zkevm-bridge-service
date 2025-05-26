@@ -321,6 +321,11 @@ func (s *ClientSynchronizer) syncBlocks(lastBlockSynced etherman.Block) (*etherm
 			log.Infof("[TAC DBG] getting elements from block %d to block %d", fromBlock, toBlock)
 		}
 		blocks, order, err := s.etherMan.GetRollupInfoByBlockRange(s.ctx, fromBlock, &toBlock)
+		for _, block := range blocks {
+			for _, ger := range block.GlobalExitRoots {
+				log.Infof("[TAC DBG] Read GER %+v", ger)
+			}
+		}
 		metrics.ReadL1DataTime(time.Since(start))
 		if err != nil {
 			return &lastBlockSynced, err
