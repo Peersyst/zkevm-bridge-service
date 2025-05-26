@@ -616,7 +616,7 @@ func (s *ClientSynchronizer) checkReorg(latestStoredBlock etherman.Block, synced
 			}
 			block = &etherman.Block{
 				BlockNumber: b.Number.Uint64(),
-				BlockHash:   b.Hash(),
+				BlockHash:   b.RpcHash,
 			}
 			if block.BlockNumber != reorgedBlock.BlockNumber {
 				err := fmt.Errorf("networkID: %d, wrong ethereum block retrieved from blockchain. Block numbers don't match. BlockNumber stored: %d. BlockNumber retrieved: %d",
