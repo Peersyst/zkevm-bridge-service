@@ -458,6 +458,7 @@ func (s *ClientSynchronizer) processBlockRange(blocks []etherman.Block, order ma
 			log.Errorf("networkID: %d, error storing block. BlockNumber: %d, error: %v", s.networkID, blocks[i].BlockNumber, err)
 			return s.rollback(blocks[i].BlockNumber, err, dbTx)
 		}
+		log.Infof("[TAC DBG] %+v", order[blocks[i].BlockHash])
 		for _, element := range order[blocks[i].BlockHash] {
 			switch element.Name {
 			case etherman.GlobalExitRootsOrder:
